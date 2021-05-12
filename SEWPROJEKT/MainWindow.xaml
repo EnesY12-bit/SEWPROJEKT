@@ -1,0 +1,102 @@
+﻿<Window x:Class="SEWPROJEKT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SEWPROJEKT"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <TextBlock x:Name="TextBlock"
+                   TextWrapping="Wrap"
+                   Text="Ein-und Ausgabenrechner"
+                   FontSize="24"
+                   FontWeight="DemiBold" />
+        <TabControl x:Name="Control" MinHeight="300" RenderTransformOrigin="0.5,0.5" Height="394" Margin="0,0,0.333,0">
+            <TabControl.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="-0.379"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.993"/>
+                </TransformGroup>
+            </TabControl.RenderTransform>
+            <TabItem Header="Home">
+                <Grid Background="Azure" Margin="0,-31,-0.333,-0.667">
+                    <!---Label-->
+                    <Label Content="Liste erfassen:" HorizontalAlignment="Left" Margin="17,56.833,0,0" VerticalAlignment="Top" Width="113" Height="26" Grid.Row="1"/>
+                    <Label Content="Betrag: +/-" HorizontalAlignment="Left" Margin="17,88.833,0,0" VerticalAlignment="Top" Width="69" Height="26" Grid.Row="1"/>
+                    <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="17,118.833,0,0" VerticalAlignment="Top" Height="26" Width="84" Grid.Row="1"/>
+                    <Label Content="Liste:" HorizontalAlignment="Left" Margin="369,57,0,0" VerticalAlignment="Top" Width="83" Height="26"/>
+                    <Label Content="Ausgabe:" HorizontalAlignment="Left" Margin="223,335,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
+                    <Label Content="Kontostand:" HorizontalAlignment="Left" Margin="528,339,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
+                    <Label x:Name="AusgangLabel" Content="" HorizontalAlignment="Left" Margin="351,339,0,0" VerticalAlignment="Top" Width="172" Height="26"/>
+                    <Label x:Name="KontoLabel" Content="" HorizontalAlignment="Left" Margin="651,339,0,0" VerticalAlignment="Top" Width="114"/>
+                    <!--TextBox & Label(Ausnahme)-->
+                    <TextBox x:Name="BetragTextBox" HorizontalAlignment="Left" Height="22" Margin="91,91.833,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+                    <Label Content="€" HorizontalAlignment="Left" Margin="195,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.062,0.654" Height="26" Width="16"/>
+                    <TextBox x:Name="BeschreibungsTextBox" HorizontalAlignment="Left" Height="117" Margin="26,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                    <!--Button-->
+                    <Button x:Name="SpeichernButton" Content="Daten Speichern" HorizontalAlignment="Left" Margin="17,37,0,0" VerticalAlignment="Top" Width="124" Click="SpeichernButton_Click" Height="20"/>
+                    <Button x:Name="LadenButton" Content="Pfad Anzeigen" HorizontalAlignment="Left" Margin="267,37,0,0" VerticalAlignment="Top" Width="106" Click="LadenButton_Click" Height="20"/>
+                    <Button x:Name="EingangButton" Content="Einfügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="14,348,0,0" Click="EingangButton_Click" Height="20"/>
+                    <!--<Button x:Name="AusgangButton" Content="Zahlung bekommen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="22,326.833,0,-26" Click="AusgangButton_Click" Height="20" Grid.Row="1"/>-->
+                    <Button x:Name="ListeSpeicherButton" Content="Liste Speichern" HorizontalAlignment="Left" Margin="150,37,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click" Height="20"/>
+                    <Button x:Name="RechnungLöschenButton" Content="Löschen" HorizontalAlignment="Left" Margin="621,22,0,0" VerticalAlignment="Top" Width="120" Click="RechnungLöschenButton_Click"/>
+                    <Button x:Name="VorleseButton" Content="Summe Vorlesen" HorizontalAlignment="Left" Margin="223,366,0,0" VerticalAlignment="Top" Width="128" Click="VorleseButton_Click"/>
+                    <Button x:Name="VorleseButton2" Content="Kontostand Vorlesen" HorizontalAlignment="Left" Height="22" Margin="535,366,0,0" VerticalAlignment="Top" Width="127" Click="VorleseButton2_Click"/>
+                    <!--ListBox-->
+                    <ListBox x:Name="RechnungsListBox" HorizontalAlignment="Left" Height="227" Margin="369,83,0,0" VerticalAlignment="Top" Width="408" SelectionChanged="RechnungsListBox_SelectionChanged"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Rechnungen">
+                <Grid Background="Azure">
+                    <!--Label-->
+                    <Label Content="Letzten Daten:"  HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" Height="46" Width="337" FontSize="20"/>
+                    <!--ListBox-->
+                    <ListBox x:Name="DatenListBox" HorizontalAlignment="Left" Height="290" Margin="61,56,0,0" VerticalAlignment="Top" Width="655" SelectionChanged="DatenListBox_SelectionChanged"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Taschenrechner">
+                <Grid Background="Azure" Margin="0,2,-0.333,-1.667">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Taschenrechner Hintergrund-->
+                    <!-- <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="345" Margin="32.333,10,0,0" Stroke="Black" VerticalAlignment="Top" Width="555" Grid.Column="1"/>-->
+                    <!--Anzeige-->
+                    <TextBlock Text="0" x:Name="textBlockAusgabe" FontSize="40" Grid.ColumnSpan="2"/>
+                    <!--Tasten mit Zahlen-->
+                    <Button Content="0" Grid.Column="1" Grid.Row="4" Click="Button0_Click"/>
+                    <Button Content="1" Grid.Column="0" Grid.Row="3" Click="Button1_Click" />
+                    <Button Content="2" Grid.Column="1" Grid.Row="3" Click="Button2_Click" />
+                    <Button Content="3" Grid.Column="2" Grid.Row="3" Click="Button3_Click" />
+                    <Button Content="4" Grid.Column="0" Grid.Row="2" Click="Button4_Click" />
+                    <Button Content="5" Grid.Column="1" Grid.Row="2" Click="Button5_Click"/>
+                    <Button Content="6" Grid.Column="2" Grid.Row="2" Click="Button6_Click"/>
+                    <Button Content="7" Grid.Column="0" Grid.Row="1" Click="Button7_Click"/>
+                    <Button Content="8" Grid.Column="1" Grid.Row="1" Click="Button8_Click"/>
+                    <Button Content="9" Grid.Column="2" Grid.Row="1" Click="Button9_Click"/>
+
+                    <!--Operationen-->
+                    <Button Content="/" Click="ButtonGeteilt_Click" Grid.Column="3" Grid.Row="1"/>
+                    <Button Content="x" Click="ButtonMal_Click" Grid.Column="3" Grid.Row="2"/>
+                    <Button Content="+" Click="ButtonPlus_Click" Grid.Column="3" Grid.Row="4"/>
+                    <Button Content="-" Click="ButtonMinus_Click" Grid.Column="3" Grid.Row="3"/>
+                    <Button Content="=" Click="ButtonGleich_Click" Grid.Column="2" Grid.Row="4"/>
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </StackPanel>
+</Window>
