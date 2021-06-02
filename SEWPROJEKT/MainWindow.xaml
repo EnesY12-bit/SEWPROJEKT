@@ -15,16 +15,9 @@
                    FontSize="24"
                    FontWeight="DemiBold" />
         <TabControl x:Name="Control" MinHeight="300" RenderTransformOrigin="0.5,0.5" Height="394" Margin="0,0,0.333,0">
-            <TabControl.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.379"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.993"/>
-                </TransformGroup>
-            </TabControl.RenderTransform>
             <TabItem Header="Home">
-                <Grid Background="Azure" Margin="0,-31,-0.333,-0.667">
+                <!--Grid oder StackPanel wurde noch nicht gemacht-->
+                <Grid Background="AliceBlue" Margin="0,-31,-0.333,-0.667">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
@@ -44,7 +37,7 @@
                     <!--Button-->
                     <Button x:Name="SpeichernButton" Content="Daten Speichern" HorizontalAlignment="Left" Margin="17,37,0,0" VerticalAlignment="Top" Width="124" Click="SpeichernButton_Click" Height="20"/>
                     <Button x:Name="LadenButton" Content="Pfad Anzeigen" HorizontalAlignment="Left" Margin="267,37,0,0" VerticalAlignment="Top" Width="106" Click="LadenButton_Click" Height="20"/>
-                    <Button x:Name="EingangButton" Content="Einfügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="14,348,0,0" Click="EingangButton_Click" Height="20"/>
+                    <Button x:Name="EingangButton" Content="Einfügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="26,346,0,0" Click="EingangButton_Click" Height="20"/>
                     <!--<Button x:Name="AusgangButton" Content="Zahlung bekommen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="22,326.833,0,-26" Click="AusgangButton_Click" Height="20" Grid.Row="1"/>-->
                     <Button x:Name="ListeSpeicherButton" Content="Liste Speichern" HorizontalAlignment="Left" Margin="150,37,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click" Height="20"/>
                     <Button x:Name="RechnungLöschenButton" Content="Löschen" HorizontalAlignment="Left" Margin="621,36,0,0" VerticalAlignment="Top" Width="120" Click="RechnungLöschenButton_Click"/>
@@ -55,15 +48,26 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Allgemeine Daten">
-                <Grid Background="Azure">
+                <Grid Background="AliceBlue">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="53*"/>
+                        <RowDefinition Height="296*"/>
+                        <RowDefinition Height="17*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="658*"/>
+                        <ColumnDefinition Width="69*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Grid oder StackPanel wurde noch nicht gemacht-->
                     <!--Label-->
-                    <Label Content="Letzten Daten:"  HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" Height="46" Width="337" FontSize="20"/>
+                    <Label Content="Letzten Daten:"  HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Height="46" Width="337" FontSize="20" Grid.Column="1" Grid.RowSpan="2"/>
                     <!--ListBox-->
-                    <ListBox x:Name="DatenListBox" HorizontalAlignment="Left" Height="290" Margin="61,56,0,0" VerticalAlignment="Top" Width="655" SelectionChanged="DatenListBox_SelectionChanged"/>
+                    <ListBox x:Name="DatenListBox" HorizontalAlignment="Left" Height="290" Margin="1,2.333,0,0" VerticalAlignment="Top" Width="655" SelectionChanged="DatenListBox_SelectionChanged" Grid.Column="1" Grid.Row="1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Taschenrechner">
-                <Grid Background="Azure" Margin="0,2,-0.333,-1.667">
+                <Grid Background="AliceBlue" Margin="0,2,-0.333,-1.667">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>

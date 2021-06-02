@@ -8,6 +8,7 @@ namespace SEWPROJEKT
 {
     class Konto
     {
-       
+        
+        //public decimal Kontostand { get; set; }
     }
 }

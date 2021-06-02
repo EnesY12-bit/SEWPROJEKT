@@ -49,13 +49,14 @@ namespace SEWPROJEKT
             SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
             speechSynthesizer.Speak(KontoLabel.Content.ToString());
         }
+
         //ObservabelCollection
         ObservableCollection<Daten> buchungen = new ObservableCollection<Daten>();
 
         List<string> listrechnung = new List<string>();
 
         decimal Stand = 0;
-        decimal Konto = 25000;
+        decimal Konto = 2500;
 
 
         public long ToFile { get; }
@@ -77,7 +78,7 @@ namespace SEWPROJEKT
                 MessageBox.Show($"Es wurde ein {BetragTextBox.Text} verwendet","Information",MessageBoxButton.OK, MessageBoxImage.Information); ;
             }
         }
-        /*
+        /* Brauch man nicht ist unötig gewesen
         private void AusgangButton_Click(object sender, RoutedEventArgs e)
         {
             // Diser Button ist einfach nur unötig, aber Egal !
@@ -97,7 +98,7 @@ namespace SEWPROJEKT
         */
         private void SpeichernButton_Click(object sender, RoutedEventArgs e)
         {
-            //Wird durch einen FILEIO Path genommen, wo man es Spechern möchte oder einfach in ein JSON oder CSV            
+            //Wird durch einen einfach in ein CSV Datei gespeichert            
             //string path = ""; --> Durch CSV
             try
             {                                             //path, true
@@ -115,7 +116,6 @@ namespace SEWPROJEKT
             catch (Exception)
             {
                 MessageBox.Show("Da ist ein Fehler passsiert","Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                //throw;
             }
 
         }
@@ -148,7 +148,6 @@ namespace SEWPROJEKT
 
         private void DatenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
         }
 
         private void RechnungLöschenButton_Click(object sender, RoutedEventArgs e)
@@ -160,18 +159,20 @@ namespace SEWPROJEKT
                 if (Stand >= 0)
                 {
                     Stand -= Convert.ToDecimal(BetragTextBox.Text);
-                    //Konto = Konto - (Stand);
+                    // Konto funktioniert nicht ganz
+                    Konto = Konto - (Stand);
                     AusgangLabel.Content = ($"{Stand}€");
-                   // KontoLabel.Content = ($"{Konto}€");
+                    KontoLabel.Content = ($"{Konto}€");
                     RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
                 }
                 else if (Stand <= 0)
                 {
+                    //Konto funktioniert nichz ganz
                     Stand += Convert.ToDecimal(BetragTextBox.Text);
-                   // Konto = Konto + (Stand);
+                    Konto = Konto + (Stand);
                     AusgangLabel.Content = ($"{Stand}€");
+                    KontoLabel.Content = ($"{Konto}€");
                     RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
-                    //KontoLabel.Content = ($"{Konto}€");
                 }
             }
             catch
