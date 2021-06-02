@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Speech.Synthesis;
@@ -23,10 +24,13 @@ namespace SEWPROJEKT
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Taschenrechner
         int aktuellerWert = 0;
         int letztesErgebnis = 0;
         bool zahelnEingabeLäuft = true;
         char letzteRechernoperation = '=';
+        // Ende Taschenrechner
+
         public MainWindow()
         {
             InitializeComponent();
@@ -45,26 +49,32 @@ namespace SEWPROJEKT
             SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
             speechSynthesizer.Speak(KontoLabel.Content.ToString());
         }
+        //ObservabelCollection
+        ObservableCollection<Daten> buchungen = new ObservableCollection<Daten>();
 
         List<string> listrechnung = new List<string>();
 
         decimal Stand = 0;
         decimal Konto = 25000;
-        public long ToFile { get; }
 
+
+        public long ToFile { get; }
         private void EingangButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 RechnungsListBox.Items.Add(new Daten() { Betrag = Convert.ToDecimal(BetragTextBox.Text), Text = BeschreibungsTextBox.Text, Zeitpunkt = DateTime.Now });
+                //Speicher die Daten in eine ObservableCollation extra
+                buchungen.Add(new Daten() { Betrag = Convert.ToDecimal(BetragTextBox.Text), Text = BeschreibungsTextBox.Text, Zeitpunkt = DateTime.Now });
+                //
                 Stand += Convert.ToDecimal(BetragTextBox.Text);
                 Konto = (Konto) + (Stand);
-                AusgangLabel.Content = ($"{Stand}€ Euro");
+                AusgangLabel.Content = ($"{Stand}€");
                 KontoLabel.Content = ($"{Konto}€");
             }
             catch
             {
-                MessageBox.Show($"Es wurde ein Buchstabe/Zeichen verwendet in {BetragTextBox.Text}.","Information",MessageBoxButton.OK, MessageBoxImage.Information); ;
+                MessageBox.Show($"Es wurde ein {BetragTextBox.Text} verwendet","Information",MessageBoxButton.OK, MessageBoxImage.Information); ;
             }
         }
         /*
@@ -87,18 +97,20 @@ namespace SEWPROJEKT
         */
         private void SpeichernButton_Click(object sender, RoutedEventArgs e)
         {
-            //Änder durch Suchen des Pathn FILE IO, also Speichern in JSON oder CSV
-            string path = "";
+            //Wird durch einen FILEIO Path genommen, wo man es Spechern möchte oder einfach in ein JSON oder CSV            
+            //string path = ""; --> Durch CSV
             try
-            {
-                using (StreamWriter sw = new StreamWriter(path, true))
+            {                                             //path, true
+                using (StreamWriter sw = new StreamWriter("Speicher.csv"))
                 {
                     foreach (var item in RechnungsListBox.Items)
                     {
                         Daten b = (Daten)item;
-                        sw.WriteLine($"{b.Betrag},{b.Text},{b.Zeitpunkt}");
+                        sw.WriteLine($"{b.Betrag};{b.Text};{b.Zeitpunkt}");
                     }
                 }
+
+                MessageBox.Show("Gespeichert!");
             }
             catch (Exception)
             {
@@ -127,10 +139,11 @@ namespace SEWPROJEKT
         {
 
             string countTxt = Convert.ToString(RechnungsListBox.Items.Count);
-            var itemsTxt = Convert.ToString(RechnungsListBox.Items.IndexOf(RechnungsListBox));
+            //var itemsTxt = Convert.ToString(RechnungsListBox.Items.IndexOf(RechnungsListBox));
 
 
-            DatenListBox.Items.Add($"Daten in Liste {countTxt}, Bescheibung: {itemsTxt}, Datum: {DateTime.Now}");
+            DatenListBox.Items.Add($"Daten in Liste {countTxt}, Datum: {DateTime.Now}"); // Bescheibung:{itemsTxt}
+
         }
 
         private void DatenListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -140,23 +153,30 @@ namespace SEWPROJEKT
 
         private void RechnungLöschenButton_Click(object sender, RoutedEventArgs e)
         {
-            RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
-
+            // RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
             /// Stand = Convert.ToDecimal(LöschSummeTextBox.Text);
-
-            if (Stand >= 0)
+            try
             {
-                Stand -= Convert.ToDecimal(BetragTextBox.Text);
-                //Konto = Konto - (Stand);
-                AusgangLabel.Content = ($"{Stand}€ Euro");
-                // KontoLabel.Content = ($"{Konto}€");
+                if (Stand >= 0)
+                {
+                    Stand -= Convert.ToDecimal(BetragTextBox.Text);
+                    //Konto = Konto - (Stand);
+                    AusgangLabel.Content = ($"{Stand}€");
+                   // KontoLabel.Content = ($"{Konto}€");
+                    RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
+                }
+                else if (Stand <= 0)
+                {
+                    Stand += Convert.ToDecimal(BetragTextBox.Text);
+                   // Konto = Konto + (Stand);
+                    AusgangLabel.Content = ($"{Stand}€");
+                    RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
+                    //KontoLabel.Content = ($"{Konto}€");
+                }
             }
-            else if (Stand <= 0)
+            catch
             {
-                Stand += Convert.ToDecimal(BetragTextBox.Text);
-                //Konto = Konto + (Stand);
-                AusgangLabel.Content = ($"{Stand}€ Euro");
-                // KontoLabel.Content = ($"{Konto}€");
+                MessageBox.Show($"Fehler, keine Datei ausgewält!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -164,9 +184,9 @@ namespace SEWPROJEKT
         private void RechnungsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             listrechnung.Add(Convert.ToString(RechnungsListBox.SelectedItem));
-
         }
-    //Taschenrechner
+
+        //Taschenrechner
         private void ZifferAnhängen(int z)
         {
             if (zahelnEingabeLäuft)
@@ -180,7 +200,7 @@ namespace SEWPROJEKT
             }
             textBlockAusgabe.Text = aktuellerWert.ToString();
         }
-
+        
         private void Button0_Click(object sender, RoutedEventArgs e)
         {
             ZifferAnhängen(0);
@@ -248,8 +268,6 @@ namespace SEWPROJEKT
                     letztesErgebnis = letztesErgebnis / aktuellerWert;
                     break;
                 case '=':
-                    // TODO: Gleichheitszeichen mehrfach drücken?!
-                    // TODO: +, -, *, / direkt nach Gleichheitszeichen?!
                     letztesErgebnis = aktuellerWert;
                     break;
             }
@@ -282,6 +300,8 @@ namespace SEWPROJEKT
         {
             Rechne('=');
         }
+
+
     }
 
 }

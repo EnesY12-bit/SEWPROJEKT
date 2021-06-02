@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SEWPROJEKT"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Verwalter" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Icon/WI.ico">
     <StackPanel>
         <TextBlock x:Name="TextBlock"
                    TextWrapping="Wrap"
@@ -23,33 +25,36 @@
             </TabControl.RenderTransform>
             <TabItem Header="Home">
                 <Grid Background="Azure" Margin="0,-31,-0.333,-0.667">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                     <!---Label-->
-                    <Label Content="Liste erfassen:" HorizontalAlignment="Left" Margin="17,56.833,0,0" VerticalAlignment="Top" Width="113" Height="26" Grid.Row="1"/>
-                    <Label Content="Betrag: +/-" HorizontalAlignment="Left" Margin="17,88.833,0,0" VerticalAlignment="Top" Width="69" Height="26" Grid.Row="1"/>
-                    <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="17,118.833,0,0" VerticalAlignment="Top" Height="26" Width="84" Grid.Row="1"/>
+                    <Label Content="Liste erfassen:" HorizontalAlignment="Left" Margin="17,57,0,0" VerticalAlignment="Top" Width="113" Height="26"/>
+                    <Label Content="Betrag: +/-" HorizontalAlignment="Left" Margin="17,89,0,0" VerticalAlignment="Top" Width="69" Height="26"/>
+                    <Label Content="Beschreibung:" HorizontalAlignment="Left" Margin="17,119,0,0" VerticalAlignment="Top" Height="26" Width="84"/>
                     <Label Content="Liste:" HorizontalAlignment="Left" Margin="369,57,0,0" VerticalAlignment="Top" Width="83" Height="26"/>
                     <Label Content="Ausgabe:" HorizontalAlignment="Left" Margin="223,335,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
                     <Label Content="Kontostand:" HorizontalAlignment="Left" Margin="528,339,0,0" VerticalAlignment="Top" Height="26" Width="128"/>
                     <Label x:Name="AusgangLabel" Content="" HorizontalAlignment="Left" Margin="351,339,0,0" VerticalAlignment="Top" Width="172" Height="26"/>
                     <Label x:Name="KontoLabel" Content="" HorizontalAlignment="Left" Margin="651,339,0,0" VerticalAlignment="Top" Width="114"/>
                     <!--TextBox & Label(Ausnahme)-->
-                    <TextBox x:Name="BetragTextBox" HorizontalAlignment="Left" Height="22" Margin="91,91.833,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+                    <TextBox x:Name="BetragTextBox" HorizontalAlignment="Left" Height="22" Margin="91,92,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120" />
                     <Label Content="€" HorizontalAlignment="Left" Margin="195,89,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.062,0.654" Height="26" Width="16"/>
-                    <TextBox x:Name="BeschreibungsTextBox" HorizontalAlignment="Left" Height="117" Margin="26,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                    <TextBox x:Name="BeschreibungsTextBox" HorizontalAlignment="Left" Height="165" Margin="26,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                     <!--Button-->
                     <Button x:Name="SpeichernButton" Content="Daten Speichern" HorizontalAlignment="Left" Margin="17,37,0,0" VerticalAlignment="Top" Width="124" Click="SpeichernButton_Click" Height="20"/>
                     <Button x:Name="LadenButton" Content="Pfad Anzeigen" HorizontalAlignment="Left" Margin="267,37,0,0" VerticalAlignment="Top" Width="106" Click="LadenButton_Click" Height="20"/>
                     <Button x:Name="EingangButton" Content="Einfügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="14,348,0,0" Click="EingangButton_Click" Height="20"/>
                     <!--<Button x:Name="AusgangButton" Content="Zahlung bekommen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="22,326.833,0,-26" Click="AusgangButton_Click" Height="20" Grid.Row="1"/>-->
                     <Button x:Name="ListeSpeicherButton" Content="Liste Speichern" HorizontalAlignment="Left" Margin="150,37,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click" Height="20"/>
-                    <Button x:Name="RechnungLöschenButton" Content="Löschen" HorizontalAlignment="Left" Margin="621,22,0,0" VerticalAlignment="Top" Width="120" Click="RechnungLöschenButton_Click"/>
+                    <Button x:Name="RechnungLöschenButton" Content="Löschen" HorizontalAlignment="Left" Margin="621,36,0,0" VerticalAlignment="Top" Width="120" Click="RechnungLöschenButton_Click"/>
                     <Button x:Name="VorleseButton" Content="Summe Vorlesen" HorizontalAlignment="Left" Margin="223,366,0,0" VerticalAlignment="Top" Width="128" Click="VorleseButton_Click"/>
                     <Button x:Name="VorleseButton2" Content="Kontostand Vorlesen" HorizontalAlignment="Left" Height="22" Margin="535,366,0,0" VerticalAlignment="Top" Width="127" Click="VorleseButton2_Click"/>
                     <!--ListBox-->
                     <ListBox x:Name="RechnungsListBox" HorizontalAlignment="Left" Height="227" Margin="369,83,0,0" VerticalAlignment="Top" Width="408" SelectionChanged="RechnungsListBox_SelectionChanged"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Rechnungen">
+            <TabItem Header="Allgemeine Daten">
                 <Grid Background="Azure">
                     <!--Label-->
                     <Label Content="Letzten Daten:"  HorizontalAlignment="Left" Margin="61,10,0,0" VerticalAlignment="Top" Height="46" Width="337" FontSize="20"/>

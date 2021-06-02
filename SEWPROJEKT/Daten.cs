@@ -11,7 +11,7 @@ namespace SEWPROJEKT
         public decimal Betrag { get; set; }
         public string Text { get; set; }
         public DateTime Zeitpunkt { get; set; }
-
+        
         public double Eingang { get; set; }
         public double Ausgang { get; set; }
 
@@ -19,6 +19,7 @@ namespace SEWPROJEKT
         {
 
         }
+        //Methode
 
         public override string ToString()
         {
