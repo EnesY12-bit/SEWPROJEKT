@@ -30,17 +30,18 @@ namespace SEWPROJEKT
         bool zahelnEingabeLäuft = true;
         char letzteRechernoperation = '=';
         // Ende Taschenrechner
-
         public MainWindow()
         {
             InitializeComponent();
-        }
+        }  
+
+        //Hinzufüge von einem Speaker im Taschenrechner und CSV Datein Uplode und noch ein Button zum Schließen des Fenster Neue Idee!! noch nicht drinnen.
 
         private void VorleseButton_Click(object sender, RoutedEventArgs e)
         {
             //Spracheausgabe mit SpeechSynthesizer
            SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
-            speechSynthesizer.Speak(AusgangLabel.Content.ToString());
+           speechSynthesizer.Speak(AusgangLabel.Content.ToString());
         }
 
         private void VorleseButton2_Click(object sender, RoutedEventArgs e)
@@ -60,6 +61,8 @@ namespace SEWPROJEKT
 
 
         public long ToFile { get; }
+
+  
         private void EingangButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -69,13 +72,15 @@ namespace SEWPROJEKT
                 buchungen.Add(new Daten() { Betrag = Convert.ToDecimal(BetragTextBox.Text), Text = BeschreibungsTextBox.Text, Zeitpunkt = DateTime.Now });
                 //
                 Stand += Convert.ToDecimal(BetragTextBox.Text);
+                //Konto = Convert.ToDecimal(KontoTextBox.Text) + (Stand);
                 Konto = (Konto) + (Stand);
                 AusgangLabel.Content = ($"{Stand}€");
+                //KontoTextBox.Text = ($"{Konto}€");
                 KontoLabel.Content = ($"{Konto}€");
             }
             catch
             {
-                MessageBox.Show($"Es wurde ein {BetragTextBox.Text} verwendet","Information",MessageBoxButton.OK, MessageBoxImage.Information); ;
+                MessageBox.Show($"Es wurde ein Buchstabe/Zeichen verwendent in {BetragTextBox.Text}.","Information",MessageBoxButton.OK, MessageBoxImage.Information); ;
             }
         }
         /* Brauch man nicht ist unötig gewesen
@@ -119,6 +124,23 @@ namespace SEWPROJEKT
             }
 
         }
+       /* private void ButtonUpload_Click(object sender, RoutedEventArgs e)
+        {
+            RechnungsListBox.Items.Clear();
+            using (StreamReader sr = new StreamReader("Hochladen.csv"))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] splittedLine = line.Split(';');
+
+                    Konto k = new Konto(Convert.ToInt32(splittedLine[0]), splittedLine[1], Convert.ToDateTime(splittedLine[2]));
+                    RechnungsListBox.Items.Add(k);
+                    //Stand += Convert.ToDecimal(BetragTextBox.Text);
+                }
+            }
+        }
+       */
 
         private void LadenButton_Click(object sender, RoutedEventArgs e)
         {
@@ -159,19 +181,23 @@ namespace SEWPROJEKT
                 if (Stand >= 0)
                 {
                     Stand -= Convert.ToDecimal(BetragTextBox.Text);
-                    // Konto funktioniert nicht ganz
+                    //Konto = Convert.ToDecimal(KontoTextBox.Text) - (Stand);
+                    //Konto funktioniert nicht ganz
                     Konto = Konto - (Stand);
                     AusgangLabel.Content = ($"{Stand}€");
                     KontoLabel.Content = ($"{Konto}€");
+                    //KontoTextBox.Text = ($"{Konto}€");
                     RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
                 }
                 else if (Stand <= 0)
                 {
                     //Konto funktioniert nichz ganz
                     Stand += Convert.ToDecimal(BetragTextBox.Text);
+                    //Konto = Convert.ToDecimal(KontoTextBox.Text) + (Stand);
                     Konto = Konto + (Stand);
                     AusgangLabel.Content = ($"{Stand}€");
                     KontoLabel.Content = ($"{Konto}€");
+                    //KontoTextBox.Text = ($"{Konto}€");
                     RechnungsListBox.Items.Remove(RechnungsListBox.SelectedItem);
                 }
             }
@@ -300,6 +326,18 @@ namespace SEWPROJEKT
         private void ButtonGleich_Click(object sender, RoutedEventArgs e)
         {
             Rechne('=');
+        }
+
+        private void TSpeaker_Click(object sender, RoutedEventArgs e)
+        {
+            //Spracheausgabe mit SpeechSynthesizer
+            SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+            speechSynthesizer.Speak(textBlockAusgabe.Text.ToString());
+        }
+
+        private void ProgammEndButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
 
