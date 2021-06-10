@@ -19,7 +19,6 @@ namespace SEWPROJEKT
         {
 
         }
-        //Methode
 
         public override string ToString()
         {

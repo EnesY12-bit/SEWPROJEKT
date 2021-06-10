@@ -29,19 +29,27 @@ namespace SEWPROJEKT
         int letztesErgebnis = 0;
         bool zahelnEingabeLäuft = true;
         char letzteRechernoperation = '=';
+
+        decimal Stand = 0;
+        decimal Konto;
+       // decimal Konto = 2500;
         // Ende Taschenrechner
         public MainWindow()
         {
             InitializeComponent();
-        }  
+            
+            //Konto k = new Konto() { Kontostand = 2500 };
+            Konto = 2500;
+           // decimal Konto = Convert.ToDecimal(k.Kontostand);
+        }
 
         //Hinzufüge von einem Speaker im Taschenrechner und CSV Datein Uplode und noch ein Button zum Schließen des Fenster Neue Idee!! noch nicht drinnen.
 
         private void VorleseButton_Click(object sender, RoutedEventArgs e)
         {
             //Spracheausgabe mit SpeechSynthesizer
-           SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
-           speechSynthesizer.Speak(AusgangLabel.Content.ToString());
+            SpeechSynthesizer speechSynthesizer = new SpeechSynthesizer();
+            speechSynthesizer.Speak(AusgangLabel.Content.ToString());
         }
 
         private void VorleseButton2_Click(object sender, RoutedEventArgs e)
@@ -56,8 +64,7 @@ namespace SEWPROJEKT
 
         List<string> listrechnung = new List<string>();
 
-        decimal Stand = 0;
-        decimal Konto = 2500;
+        
 
 
         public long ToFile { get; }
@@ -73,7 +80,7 @@ namespace SEWPROJEKT
                 //
                 Stand += Convert.ToDecimal(BetragTextBox.Text);
                 //Konto = Convert.ToDecimal(KontoTextBox.Text) + (Stand);
-                Konto = (Konto) + (Stand);
+                Konto = (Konto) + Convert.ToDecimal(BetragTextBox.Text);
                 AusgangLabel.Content = ($"{Stand}€");
                 //KontoTextBox.Text = ($"{Konto}€");
                 KontoLabel.Content = ($"{Konto}€");
@@ -87,7 +94,7 @@ namespace SEWPROJEKT
         private void AusgangButton_Click(object sender, RoutedEventArgs e)
         {
             // Diser Button ist einfach nur unötig, aber Egal !
-            try
+            trys
             {
                 RechnungsListBox.Items.Add(new Daten() { Betrag = Convert.ToDecimal(BetragTextBox.Text), Text = BeschreibungsTextBox.Text, Zeitpunkt = DateTime.Now });
                 Stand += Convert.ToDecimal(BetragTextBox.Text);
@@ -183,7 +190,7 @@ namespace SEWPROJEKT
                     Stand -= Convert.ToDecimal(BetragTextBox.Text);
                     //Konto = Convert.ToDecimal(KontoTextBox.Text) - (Stand);
                     //Konto funktioniert nicht ganz
-                    Konto = Konto - (Stand);
+                    Konto = Konto - Convert.ToDecimal(BetragTextBox.Text);
                     AusgangLabel.Content = ($"{Stand}€");
                     KontoLabel.Content = ($"{Konto}€");
                     //KontoTextBox.Text = ($"{Konto}€");
@@ -194,7 +201,7 @@ namespace SEWPROJEKT
                     //Konto funktioniert nichz ganz
                     Stand += Convert.ToDecimal(BetragTextBox.Text);
                     //Konto = Convert.ToDecimal(KontoTextBox.Text) + (Stand);
-                    Konto = Konto + (Stand);
+                    Konto = Konto + Convert.ToDecimal(BetragTextBox.Text);
                     AusgangLabel.Content = ($"{Stand}€");
                     KontoLabel.Content = ($"{Konto}€");
                     //KontoTextBox.Text = ($"{Konto}€");

@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace SEWPROJEKT
 {
-    class Konto
+    public class Konto
     {
 
         public decimal Kontostand { get; set; }
 
-        public  Konto(decimal konostand)
+        public  Konto()
         {
-            this.Kontostand = 2500;
+
         }
 
-        //public decimal Kontostand { get; set; }
-        /* Test Versuch
+        /* Test Versuch für Uplode funktionierte nicht ganz
         public decimal Betrag { get; set; }
         public string Text { get; set; }
         public DateTime Zeitpunkt { get; set; }

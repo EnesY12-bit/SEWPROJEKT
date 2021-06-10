@@ -30,29 +30,29 @@
                         <RowDefinition Height="33*" />
                         <RowDefinition Height="28*"/>
                         <RowDefinition Height="26*"/>
-                        <RowDefinition Height="22*"/>
-                        <RowDefinition Height="105*"/>
+                        <RowDefinition Height="35*"/>
+                        <RowDefinition Height="91*"/>
                         <RowDefinition Height="44*"/>
                         <RowDefinition Height="40*"/>
                         <RowDefinition Height="45*"/>
                         <RowDefinition Height="46*"/>
                     </Grid.RowDefinitions>
                     <!---Label-->
-                    <Label Content="Liste erfassen:" Width="120" Height="26" Grid.Row="1" Grid.Column="1"/>
-                    <Label Content="Betrag: +/-" Width="120" Height="26" Grid.Row="2" Grid.Column="1"/>
-                    <Label Content="Beschreibung:" Width="120" Height="26" Grid.Row="3" Grid.Column="1"/>
-                    <Label Content="Liste:" Width="120" Height="26" Grid.Column="4"/>
-                    <Label Content="Ausgabe:" Width="120" Height="26" Grid.Row="6" Grid.Column="4"/>
-                    <Label Content="Kontostand:" Width="120" Height="26" Grid.Row="6" Grid.Column="5"/>
-                    <Label Background="WhiteSmoke" x:Name="AusgangLabel" Content="" Width="120" Height="26" Grid.Row="7" Grid.Column="4"/>
-                    <Label Background="WhiteSmoke" x:Name="KontoLabel" Content="" Width="120" Height="26" Grid.Row="7" Grid.Column="5"/>
+                    <Label Content="Liste erfassen:" Grid.Row="1" Grid.Column="1" Margin="17,0.667,17.667,1.333"/>
+                    <Label Content="Betrag: +/-" Grid.Row="1" Grid.Column="1" Margin="17,27.667,17.667,0.333" Grid.RowSpan="2"/>
+                    <Label Content="Beschreibung:" Grid.Row="3" Grid.Column="1" Margin="17,2.667,17.667,2.667"/>
+                    <Label Content="Liste:" Grid.Column="4" Margin="18.333,4,19,3.333"/>
+                    <Label Content="Ausgabe:" Grid.Row="6" Grid.Column="4" Margin="18.333,7,19,7"/>
+                    <Label Content="Kontostand:" Grid.Row="6" Grid.Column="5" Margin="44,7"/>
+                    <Label Background="WhiteSmoke" x:Name="AusgangLabel" Content="" Grid.Row="7" Grid.Column="4" Margin="18.333,9,19,9.333"/>
+                    <Label Background="WhiteSmoke" x:Name="KontoLabel" Content="" Grid.Row="7" Grid.Column="5" Margin="44,9,44,9.333"/>
                     <!--TextBox & Label(Ausnahme)-->
-                    <TextBox x:Name="BetragTextBox" Text="" Width="120" Height="26" Grid.Row="2" Grid.Column="2"/>
-                    <Label Content="€" HorizontalAlignment="Right" Height="30" Width="20" Grid.Row="2" Grid.Column="2"/>
-                    <TextBox x:Name="BeschreibungsTextBox" Height="90" Width="140" Grid.Row="4" Grid.Column="1"/>
+                    <TextBox x:Name="BetragTextBox" Text="" Grid.Row="1" Grid.Column="2" Margin="7.333,27.667,6.667,0.333" Grid.RowSpan="2"/>
+                    <Label Content="€" HorizontalAlignment="Right" Width="20" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Margin="0,27.667,119.667,0.333" Grid.RowSpan="2"/>
+                    <TextBox x:Name="BeschreibungsTextBox" Grid.Row="4" Grid.Column="1"/>
                     <!---<TextBox x:Name="KontoTextBox" HorizontalAlignment="Left" Height="23" Margin="634,316,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>-->
                     <!--Button-->
-                    <Border Background="Transparent" Margin="1.333,1.667,157,77.667" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="4">
+                    <Border Background="Transparent" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="1" Grid.RowSpan="2">
                         <StackPanel Margin="10">
                             <Button x:Name="SpeichernButton" Content="Daten Speichern" Click="SpeichernButton_Click"/>
                             <Button x:Name="LadenButton" Content="Pfad Anzeigen" Click="LadenButton_Click" Margin="0,10"/>
@@ -61,17 +61,17 @@
                     </Border>
                     <!-- Wichtig <Button x:Name="SpeichernButton" Content="Daten Speichern" HorizontalAlignment="Left" Margin="17,37,0,0" VerticalAlignment="Top" Width="124" Click="SpeichernButton_Click" Height="20"/>
                     <Button x:Name="LadenButton" Content="Pfad Anzeigen" HorizontalAlignment="Left" Margin="480,37,0,0" VerticalAlignment="Top" Width="106" Click="LadenButton_Click" Height="20"/>-->
-                    <Button x:Name="EingangButton" Content="Einfügen" Click="EingangButton_Click" Width="120" Height="26" Grid.Row="5" Grid.Column="1"/>
+                    <Button Background="Gold" x:Name="EingangButton" Content="Einfügen" Click="EingangButton_Click" Grid.Row="5" Grid.Column="1" Margin="17,9,17.667,9"/>
                     <!--<Button x:Name="AusgangButton" Content="Zahlung bekommen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="153" Margin="22,326.833,0,-26" Click="AusgangButton_Click" Height="20" Grid.Row="1"/>-->
 
                     <!-- Wichtig <Button x:Name="ListeSpeicherButton" Content="Liste Speichern" HorizontalAlignment="Left" Margin="341,37,0,0" VerticalAlignment="Top" Width="111" Click="Button_Click" Height="20"/>-->
-                    <Button x:Name="RechnungLöschenButton" Content="Löschen" Click="RechnungLöschenButton_Click" Width="120" Height="26" Grid.Row="5" Grid.Column="5"/>
-                    <Button Background="#429bf5" x:Name="VorleseButton" Content="Summe Vorlesen" Click="VorleseButton_Click" Width="120" Height="26" Grid.Row="8" Grid.Column="4"/>
-                    <Button Background="#429bf5" x:Name="VorleseButton2" Content="Kontostand Vorlesen" Click="VorleseButton2_Click" Width="120" Height="26" Grid.Row="8" Grid.Column="5"/>
-                    <Button Background="RED" x:Name="ProgammEndButton" Content="Bennden" Click="ProgammEndButton_Click" Width="120" Height="26" Grid.Row="8" Grid.Column="1"/>
+                    <Button x:Name="RechnungLöschenButton" Content="Löschen" Click="RechnungLöschenButton_Click" Grid.Row="5" Grid.Column="5" Margin="44,9"/>
+                    <Button Background="#429bf5" x:Name="VorleseButton" Content="Summe Vorlesen" Click="VorleseButton_Click" Grid.Row="8" Grid.Column="4" Margin="18.333,9.667,19,10.333"/>
+                    <Button Background="#429bf5" x:Name="VorleseButton2" Content="Kontostand Vorlesen" Click="VorleseButton2_Click" Grid.Row="8" Grid.Column="5" Margin="44,9.667,44,10.333"/>
+                    <Button Background="RED" x:Name="ProgammEndButton" Content="Bennden" Click="ProgammEndButton_Click" Grid.Row="8" Grid.Column="1" Margin="17,9.667,17.667,10.333"/>
                     <!-- Test  <Button x:Name="ButtonUpload" Content="Daten Einfügen" HorizontalAlignment="Left" Margin="176,37,0,0" VerticalAlignment="Top" Width="111" Click="ButtonUpload_Click"/>-->
                     <!--ListBox-->
-                    <ListBox x:Name="RechnungsListBox" SelectionChanged="RechnungsListBox_SelectionChanged" Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="4"/>
+                    <ListBox x:Name="RechnungsListBox" SelectionChanged="RechnungsListBox_SelectionChanged" Grid.Column="4" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="0.333,33,0,0"/>
 
                 </Grid>
             </TabItem>
